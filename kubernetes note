@@ -1,0 +1,80 @@
+kubernetes note
+
+1.k8s architecture
+
+Node processes
+worker machine in k8s cluster
+ 3node porcesses are must be run every node in k8s
+ 1.container runtime	
+ 2.kubelet 
+   kubelet interacts with both - the container and node
+   kublet starts the pod with a container inside
+ 3.kube proxy
+   kube proxy forwards the requests node to node (db service)
+   
+how do you interact with this cluster?
+schedule pod?
+monitor?
+re-schedule/re-start pod?
+join a new Node?
+
+Master processes
+4 processes run on every master node
+ 1.Api server
+   client > api server (any update and query)
+   Api server = cluster gateway
+                acts as  a gatekeeper for authentication
+   Example
+   some request > apiserver > validates request > other processes > pod
+
+2.Scheduler
+
+Scheduler new pod > api server > scheduler > where to put pod > kubelet
+
+Scheduler just decides on which node new pod should be scheduled.
+
+3.Controller manager
+  1.Detects cluster state changes
+
+Controller Manager > Scheduler > Kublet > pod(workernode)
+
+4.etcd
+etcd = key value store(etcd is the cluster brain)
+       Cluster changes get stored in the key value store.
+
+IN conclusion in master processes
+1. scheduler = what resources are available?
+2. Controller manager = Did the cluster state change?
+3. Api server = Is the cluster healthy?
+4. etcd = application data is not stored in etcd.
+
+Master to Master
+1.Api server is load balanced.
+2.etcd is distributed stroage across all master nodes
+
+MINIKUBE AND KUBECTL
+
+Kubectl cli for configuring the minikube cluster.
+Minikube cli for start up/deleting the cluster.
+
+BASIC KUBECTL COMMANDS
+
+ CRUD commands
+  Create deployment-kubectl create deployment [name]
+  Edit deployment-kubectl edit deplyment [name]
+  Delete deployment-kubectl delete deployment [name]
+  
+Status of different K8s components
+  kubectl get nodes | pod | services | replicaset | deployment 
+  
+  
+           
+              
+                
+               
+                
+
+
+
+
+
