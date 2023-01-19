@@ -3,7 +3,7 @@
 Scan Options
 -sL(List Scan)
 -sn(Ping Scan)
--Pn(Port Scan) - To use denied state ICMP Respond and only for host discover.
+-Pn(Port Scan) - To use ICMP Respond is denied state and only for host discover.
 $namp -sn 192.168.1.0/24
 $nmap -Pn 192.168.1.2
 
