@@ -1,0 +1,57 @@
+1- Host Discover Scan
+(To find active host on network and know it Ping Sweep or ICMP Scanning)
+Scan Options
+-sL(List Scan)
+-sn(Ping Scan)
+-Pn(Port Scan) - To use denied state ICMP Respond and only for host discover.
+$namp -sn 192.168.1.0/24
+$nmap -Pn 192.168.1.2
+
+2- SYN Stealth Scan or Half-Opening Scanning
+Not Fully use TWHS and need root access.
+$nmap -sS 192.168.2.1
+
+3- TCP Connect Scan
+fully use TWHS and output results are more useful.
+#nmap -sT 192.168.2.120
+
+4- ACK Scan
+this scan is prot scan type and detect firewall rules.
+Can't decided which ports are open.Should be use with other scan type.
+#nmap -sA 192.168.2.1
+
+5- Decoys Scan
+This scan is to hide for IDS logs or firewall detecting and Decoys ip address are must be active hosts.
+#nmap -D192.156.2.130,192,168,2,131,(me = nmap user ip) -p 80,22,25,443 -Pn 192.168.2.1
+
+6- IDLE Scan
+nmap user packets are not directly  to send target, send by Zombie host.
+#nmap -Pn -p- -sI zombile.com www.target.com
+Operation system and version detection
+
+OS Fingerprinting
+this scan option is not working in vpn link.
+#nmap -O 192.168.1.2
+
+Version detect
+#nmap -sV 192.168.2.100
+
+Version Detect, Trace Route , Nmap scripting engine
+#nmap -A 192.168.2.120
+
+Nmap Scripting Engine(NSE)
+This scan is ues to DNS recon scrinpt, brute force attack script, vulunerability identification script and include other over 430 script.
+#locate *.nse
+Download NSE scripts to move /usr/share/nmap/scripts and run commads is --script-updatedb.
+# nmap --script-updatedb
+# nmap --script-help "smb-check-vulns.nse"
+# nmap 192.168.2.121 - script smb-check-vulns.nse
+$ nmap -sC scanme.nmap.org
+OR
+$ nmap --script=default scanme.nmap.org
+OR
+$ nmap --script default scanme.nmap.org
+$ nmap --script-help http-headers scanme.nmap.org
+$ nmap --script http-headers scanme.nmap.org
+$ nmap --script default,broadcast 192.168.56.1
+$ nmap --script "ssh-*" 192.168.56.1
