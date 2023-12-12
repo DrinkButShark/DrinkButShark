@@ -1,0 +1,106 @@
+# test app git link
+
+https://github.com/GoogleCloudPlatform/microservices-demo
+
+https://github.com/GoogleCloudPlatform/microservices-demo.git
+
+
+## commands stracture
+
+kubectl api-resources
+kubectl explain deployment.metadata# you want to konw kube services
+kubectl explain pod.spec.containers (show step by step)
+kubectl create ns myapp
+
+kubectl get all
+kubectl get all -n myapp
+
+kubectl get service
+kubectl get replicasets -n myapp
+
+kubectl get deployment
+
+watch
+more
+-o wide
+describe (troubleshoot)
+
+
+
+## Homework
+https://hc-sessions.notion.site/hc-sessions/Homework-01-4-node-cluster-d7bf1aa399cb426ab2255eb24f5e4c75
+
+You can try another demo like online boutique
+
+https://github.com/microservices-demo/microservices-demo
+
+There are many other microservices demo apps available on the internet
+
+https://github.com/microservices-demo/microservices-demo/blob/master/deploy/kubernetes/complete-demo.yaml
+
+istio bookinfo app(test app)
+
+# kubernetes scale up/down
+kubectl scale --replicas=2 deployment.apps/details-v1 -n bookinfo
+kubectl edit deployment.apps/details-v1 -n bookinfo
+kubectl describe pods deplyment.apps/details-v1 -n bookinfo
+
+Note: Can't edit in replicaset, only editable for deplyment
+
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.20/samples/bookinfo/platform/kube/bookinfo.yaml -n bookinfo
+
+#relationship of pod+deployment+replicaset
+
+#service
+kubectl get all -n bookinfo -o wide/yaml
+kubectl get ep (service name)
+
+kubernet know third party app with crds.
+
+kubectl edit service/details -n bookinfo
+
+https://istio.io/latest/docs/setup/getting-started/#download
+
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.10/config/manifests/metallb-native.yaml
+
+https://cert-manager.io/docs/installation/
+
+kubectl cluster-info
+kubectl get nodes
+kubectl config view
+
+minikube start --vm-driver docker
+
+list [] is format to yaml to -
+
+hashicorp/http-echo:0.2.3
+
+https://hub.docker.com/r/hashicorp/http-echo
+
+## Key Concepts…
+
+ 
+
+- One Pod must have at least one container.
+
+- One Pod can have multiple containers.
+
+- Every container must run on a port.
+
+- Container port must be unique within a pod.
+
+- One Pod has one IP address.
+
+apiVersion: v1 kind: Namespace metadata:   name: currency-ns --- apiVersion: v1 kind: Pod metadata:    name: currencypod   namespace: currency-ns   labels:      app: currencyapp spec:   containers:   - name: currency-container     image: hashicorp/http-echo:0.2.3     args:     - "-text= response from sg-curreny app"     - "-listen=:8080"   - name: currency-container2     image: hashicorp/http-echo:0.2.3     args:     - "-text= response from sg-curreny app2"     - "-listen=:8080"
+
+
+
+
+
+
+
+
+
+
+
+
